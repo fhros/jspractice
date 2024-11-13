@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <p id="leapYearResult"></p>
+
+  <script>
+    const year = parseInt(prompt("anna vuosiluku:"));
+
+    let isLeapYear;
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+      isLeapYear = true;
+    } else {
+      isLeapYear = false;
+    }
+
+    const resultMessage = isLeapYear
+            ? `${year} on karkausvuosi.`
+            : `${year} ei ole karkausvuosi.`;
+
+    document.getElementById("leapYearResult").innerText = resultMessage;
+  </script>
+</body>
+</html>

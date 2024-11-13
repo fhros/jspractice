@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <ul id="leapYearList"></ul>
+
+  <script>
+    const startYear = parseInt(prompt("anna eka vuosi:"));
+    const endYear = parseInt(prompt("ja nyt vika vuosi:"));
+
+    const leapYearList = document.getElementById("leapYearList");
+
+    for (let year = startYear; year <= endYear; year++) {
+      if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+        const listItem = document.createElement("li");
+        listItem.textContent = year;
+        leapYearList.appendChild(listItem);
+      }
+    }
+  </script>
+</body>
+</html>

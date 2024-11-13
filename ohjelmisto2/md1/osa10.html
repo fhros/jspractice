@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <p id="probabilityResult"></p>
+
+  <script>
+    const numberOfDice = parseInt(prompt("anna noppien määrä:"));
+    const desiredSum = parseInt(prompt("silmälukujen määrä:"));
+
+    const simulations = 10000;
+    let successfulOutcomes = 0;
+
+    function rollDie() {
+      return Math.floor(Math.random() * 6) + 1;
+    }
+
+    for (let i = 0; i < simulations; i++) {
+      let sum = 0;
+
+      for (let j = 0; j < numberOfDice; j++) {
+        sum += rollDie();
+      }
+
+      if (sum === desiredSum) {
+        successfulOutcomes++;
+      }
+    }
+
+    const probability = (successfulOutcomes / simulations) * 100;
+
+    document.getElementById("probabilityResult").innerText =
+            `mahdollisuus saada ${desiredSum} ${numberOfDice}:lla nopalla on ${probability.toFixed(2)}%`;
+  </script>
+</body>
+</html>

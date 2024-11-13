@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <p id="diceSum"></p>
+
+  <script>
+    const numberOfRolls = parseInt(prompt("anna noppien määrä:"));
+
+    let sum = 0;
+
+    for (let i = 0; i < numberOfRolls; i++) {
+      const roll = Math.floor(Math.random() * 6) + 1;
+      sum += roll;
+    }
+
+    document.getElementById("diceSum").innerText = `heittojen summa on: ${sum}`;
+  </script>
+</body>
+</html>

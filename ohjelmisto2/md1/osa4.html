@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <p id="sortingResult"></p>
+
+  <script>
+    const studentName = prompt("nimi:");
+
+    const randomNumber = Math.floor(Math.random() * 4) + 1;
+
+    let house;
+    if (randomNumber === 1) {
+      house = "Gryffindor";
+    } else if (randomNumber === 2) {
+      house = "Slytherin";
+    } else if (randomNumber === 3) {
+      house = "Hufflepuff";
+    } else {
+      house = "Ravenclaw";
+    }
+
+    document.getElementById("sortingResult").innerText = `${studentName}, you are ${house}.`;
+  </script>
+</body>
+</html>
