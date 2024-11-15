@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
+    <script>
+    let numbers = [];
+    for (let i = 0; i < 5; i++) {
+        let input = parseFloat(prompt(`anna numeror ${i + 1}:`));
+        numbers.push(input);
+    }
 
+    for (let i = numbers.length - 1; i >= 0; i--) {
+        console.log(numbers[i]);
+    }
+    </script>
 </body>
 </html>

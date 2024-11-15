@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    let numbers = [];
+
+    while (true) {
+      let input = parseFloat(prompt("anna numore (0 lopettaa):"));
+
+      if (input === 0) {
+        break;
+      }
+
+      numbers.push(input);
+    }
+
+    numbers.sort((a, b) => b - a);
+
+    numbers.forEach(number => console.log(number));
+  </script>
+</body>
+</html>

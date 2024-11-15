@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    let numbers = [];
+    let duplicateFound = false;
+
+    while (!duplicateFound) {
+      let input = parseFloat(prompt("anna numero:"));
+
+      if (numbers.includes(input)) {
+        console.log(`numero ${input} on jo annettu`);
+        duplicateFound = true;
+      } else {
+        numbers.push(input);
+      }
+    }
+
+    numbers.sort((a, b) => a - b);
+
+    numbers.forEach(number => console.log(number));
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="dice-rolls"></div>
+
+  <script>
+    function rollDice(sides) {
+      return Math.floor(Math.random() * sides) + 1;
+    }
+
+    const container = document.getElementById("dice-rolls");
+    const diceRollsList = document.createElement("ul");
+
+    const sides = parseInt(prompt("nopan sivujen määrä:"));
+
+    if (isNaN(sides) || sides < 2) {
+      alert("anna numero joka on yhtä suuri tai suurempi kuin kaksi");
+    } else {
+      let roll;
+
+      do {
+        roll = rollDice(sides);
+        const listItem = document.createElement("li");
+        listItem.textContent = roll;
+        diceRollsList.appendChild(listItem);
+      } while (roll !== sides);
+
+      container.appendChild(diceRollsList);
+    }
+  </script>
+</body>
+</html>

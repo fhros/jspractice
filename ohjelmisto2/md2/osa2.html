@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="participants-list"></div>
+
+  <script>
+    let numberOfParticipants = parseInt(prompt("osallistujien määrä:"));
+
+    let participants = [];
+
+    for (let i = 0; i < numberOfParticipants; i++) {
+      let name = prompt(`osallistujan nimi ${i + 1}:`);
+      participants.push(name);
+    }
+
+    participants.sort();
+
+    let listContainer = document.getElementById("participants-list");
+    let ol = document.createElement("ol");
+
+    participants.forEach(participant => {
+      let li = document.createElement("li");
+      li.textContent = participant;
+      ol.appendChild(li);
+    });
+
+    listContainer.appendChild(ol);
+  </script>
+</body>
+</html>

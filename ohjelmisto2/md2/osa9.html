@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    function even(numbers) {
+    let evenNumbers = [];
+
+    for (let number of numbers) {
+      if (number % 2 === 0) {
+        evenNumbers.push(number);
+      }
+    }
+
+    return evenNumbers;
+  }
+
+  const originalArray = [2, 7, 4];
+  const evenArray = even(originalArray);
+
+  console.log("alkuperänen array:", originalArray);
+  console.log("parilliset luvut arrayssa:", evenArray);
+  </script>
+</body>
+</html>

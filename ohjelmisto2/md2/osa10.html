@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    let numberOfCandidates = parseInt(prompt("kandidaattien määrä:"));
+
+    let candidates = [];
+    for (let i = 1; i <= numberOfCandidates; i++) {
+      let candidateName = prompt(`nimi kandidaatille ${i}:`);
+      candidates.push({ name: candidateName, votes: 0 });
+    }
+
+    let numberOfVoters = parseInt(prompt("äänestäjien määrä:"));
+
+    for (let i = 1; i <= numberOfVoters; i++) {
+      let vote = prompt(`äänestäjä ${i}, ketä äänestät (laita nimi tai jätä tyhjäksi)`);
+      if (vote) {
+        let candidate = candidates.find(c => c.name.toLowerCase() === vote.toLowerCase());
+        if (candidate) {
+          candidate.votes++;
+        } else {
+          console.log(`huono vote: ${vote}`);
+        }
+      }
+    }
+
+    candidates.sort((a, b) => b.votes - a.votes);
+    let winner = candidates[0];
+
+    console.log(`voittaja on ${winner.name} ${winner.votes} äänellä`);
+    console.log("tulokset:");
+    candidates.forEach(candidate => {
+      console.log(`${candidate.name}: ${candidate.votes} ääntä`);
+    });
+  </script>
+</body>
+</html>
