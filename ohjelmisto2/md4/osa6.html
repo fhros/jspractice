@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>Chuck Norris vitsi</h1>
+<form id="searchForm">
+  <label for="query">anna hakusana:</label>
+  <input id="query" name="query" type="text" required>
+  <input type="submit" value="hae">
+</form>
+
+<div id="results"></div>
+
+<script>
+  document.getElementById('searchForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const query = document.getElementById('query').value.trim();
+    if (!query) return;
+
+    const apiUrl = `https://api.chucknorris.io/jokes/search?query=${encodeURIComponent(query)}`;
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`virhe: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      if (data.result.length === 0) {
+        resultsDiv.innerHTML = '<p>vitsei ei löytyny kokeile toista haskusnna</p>';
+        return;
+      }
+
+      data.result.forEach(joke => {
+        const article = document.createElement('article');
+        const paragraph = document.createElement('p');
+        paragraph.textContent = joke.value;
+        article.appendChild(paragraph);
+        resultsDiv.appendChild(article);
+      });
+    } catch (error) {
+      console.error('Failed to fetch jokes:', error);
+      resultsDiv.innerHTML = '<p>virhe tietoje saannis</p>';
+    }
+  });
+</script>
+</body>
+</html>

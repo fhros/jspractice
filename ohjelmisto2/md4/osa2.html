@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>hae tv sajaa</h1>
+<form id="searchForm">
+  <label for="query">sarjan nimi:</label>
+  <input id="query" name="q" type="text" placeholder="anna tv sarjan nimi" required>
+  <input type="submit" value="hae">
+</form>
+
+<script>
+  document.getElementById('searchForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const query = document.getElementById('query').value;
+    if (!query) return;
+
+    const apiUrl = `https://api.tvmaze.com/search/shows?q=${encodeURIComponent(query)}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Search Results:', data);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    }
+  });
+</script>
+</body>
+</html>

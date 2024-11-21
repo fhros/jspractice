@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>Chuck Norris vitsi</h1>
+<p>avaa konsoli !!</p>
+<script>
+  async function fetchChuckNorrisJoke() {
+    const apiUrl = 'https://api.chucknorris.io/jokes/random';
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Random Joke:', data.value);
+    } catch (error) {
+      console.error('Failed to fetch joke:', error);
+    }
+  }
+
+  fetchChuckNorrisJoke();
+</script>
+</body>
+</html>

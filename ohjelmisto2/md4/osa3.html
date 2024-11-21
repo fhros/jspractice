@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>hae tv sajaa</h1>
+<form id="searchForm">
+  <label for="query">sarjan nimi:</label>
+  <input id="query" name="q" type="text" placeholder="anna tv sarjan nimi" required>
+  <input type="submit" value="hae">
+</form>
+
+<div id="results"></div>
+
+<script>
+  document.getElementById('searchForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const query = document.getElementById('query').value;
+    if (!query) return;
+
+    const apiUrl = `https://api.tvmaze.com/search/shows?q=${encodeURIComponent(query)}`;
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`virhe: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      if (data.length === 0) {
+        resultsDiv.innerHTML = '<p>ei tuloksia</p>';
+        return;
+      }
+
+      data.forEach(tvShow => {
+        const { show } = tvShow;
+        const article = document.createElement('article');
+
+        const nameElement = document.createElement('h2');
+        nameElement.textContent = show.name;
+        article.appendChild(nameElement);
+
+        if (show.image?.medium) {
+          const imgElement = document.createElement('img');
+          imgElement.src = show.image.medium;
+          imgElement.alt = show.name;
+          article.appendChild(imgElement);
+        }
+
+        const summaryElement = document.createElement('div');
+        summaryElement.innerHTML = show.summary || 'ei tiivistelmää';
+        article.appendChild(summaryElement);
+
+        const linkElement = document.createElement('a');
+        linkElement.href = show.url;
+        linkElement.target = '_blank';
+        linkElement.textContent = 'tiedot';
+        article.appendChild(linkElement);
+
+        resultsDiv.appendChild(article);
+      });
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+      resultsDiv.innerHTML = '<p>virhe tietoje saannis</p>';
+    }
+  });
+</script>
+</body>
+</html>
